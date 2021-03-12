@@ -103,7 +103,7 @@
 
         <div class="flex-container">
             <table id="formTable" style="float: left; width: 85%; margin-left: 100px; margin-top: 150px;"
-                class="table table-striped table-hover">
+                class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -114,12 +114,78 @@
                         <th scope="col">Vaccine</th>
                         <th scope="col">First vaccine date</th>
                         <th scope="col">Second vaccine date</th>
+                        <th scope="col">Functions</th>
                     </tr>
                 </thead>
                 <tbody id="tbody">
 
                 </tbody>
             </table>
+        </div>
+
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Update Patient</h2>
+            </div>
+            <div class="modal-body">
+                <form id="modalForm" style="width: min-content;">
+                    <div class="form-floating mb-3">
+                        <input type="name" class="form-control" id="floatingInput" placeholder="Name" name="updatedName"
+                            style="width:min-content;">
+                        <label for="floatingInput" style="color: grey;">New Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="age" class="form-control" id="floatingInput" placeholder="Age" name="updatedAge"
+                            style="width: min-content;">
+                        <label for="floatingInput" style="color: grey;">New Age</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="example@email.com"
+                            name="updatedEmail" style="width:min-content;">
+                        <label for="floatingInput" style="color: grey;">New Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="postcode" class="form-control" id="floatingInput" placeholder="postcode"
+                            name="updatedPostcode" style="width: min-content;">
+                        <label for="floatingInput" style="color: grey;">New Postcode</label>
+                    </div>
+
+
+
+
+                    <!-- 
+
+                    <label for="updatedPersonName">Insert new Name: </label>
+                    <input type="text" name="updatedName" id="updatedPersonName">
+                    <label for="updatedPersonAge"> Insert new Age: </label>
+                    <input type="number" name="updatedAge" id="updatedPersonAge">
+                    <label for="updatedPersonEmail">Insert new email: </label>
+                    <input type="text" name="updatedJobEmail" id="updatedPersonEmail">
+                    <label for="updatedPostcode">insert new postcode: </label>
+                    <input type="text" name="updatedPostcode" id="updatedPostcode"> -->
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                            name="vaccine" style="width:200px">
+                            <option></option>
+                            <option value="Pfizer/BioNtech">Pfizer/BioNtech</option>
+                            <option value="Oxford/Astrazeneca">Oxford/Astrazeneca</option>
+                            <option value="Moderna">Moderna</option>
+                        </select>
+                        <label for="floatingSelect" style="font-size: 18px;">Select new vaccine</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="modalSubmit"
+                            style="border-radius: 10px; border-width: 1px;">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
     </div>

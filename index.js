@@ -2,6 +2,30 @@
 
 const table = document.getElementById("formTable").getElementsByTagName('tbody')[0];
 const tbody = document.getElementById("tbody");
+const span = document.getElementsByClassName("close")[0];
+const modal = document.getElementById("myModal");
+let updateID = 0;
+
+function openModal(id) {
+    updateID = id;
+    modal.style.display = "block";
+    console.log(updateID);
+}
+
+function closeModal() {
+    modal.style.display = "none";
+}
+
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 function getPatient() {
     axios.get("http://localhost:8080/showAll")
         .then(res => {
@@ -42,6 +66,21 @@ function renderPatient(patient) {
     const cellFutVacDate = row.insertCell();
     cellFutVacDate.innerHTML = patient.futureVacDate;
 
+    const UpdateButton = document.createElement("button");
+    UpdateButton.className = "btn btn-light";
+    UpdateButton.innerText = "Update";
+    UpdateButton.addEventListener('click', function () {
+        openModal(patient.id);
+    })
+
+    row.appendChild(UpdateButton);
+
+    const DeleteButton = document.createElement("button");
+    DeleteButton.className = "btn btn-light";
+    DeleteButton.innerHTML = "Delete"
+
+    row.appendChild(DeleteButton);
+
     return row;
 }
 
@@ -65,6 +104,20 @@ document.getElementById("patientForm").addEventListener('submit', function (even
         .catch(err => console.error(err));
 
 
+})
+
+document.getElementById("modalForm").addEventListener('submit', function (event) {
+    event.preventDefault();
+    const data = {
+        name: this.updatedName.value,
+        age: this.updatedAge.value,
+        job_title: this.updatedJobTitle.value
+    }
+    updatePerson(updateID, data);
+    this.updatedName.value = "";
+    this.updatedAge.value = null;
+    this.updatedJobTitle.value = "";
+    closeModal();
 })
 
 getPatient();
