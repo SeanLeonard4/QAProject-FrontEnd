@@ -67,31 +67,32 @@
                 Insert
                 patient</legend>
             <div class="form-floating mb-3">
-                <input type="name" class="form-control" id="floatingInput" placeholder="Name"
+                <input type="name" class="form-control" id="floatingInput" placeholder="Name" name="name"
                     style="width:min-content;">
                 <label for="floatingInput" style="color: grey;">Name</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="age" class="form-control" id="floatingInput" placeholder="Age" style="width: min-content;">
+                <input type="age" class="form-control" id="floatingInput" placeholder="Age" name="age"
+                    style="width: min-content;">
                 <label for="floatingInput" style="color: grey;">Age</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="example@email.com"
+                <input type="email" class="form-control" id="floatingInput" placeholder="example@email.com" name="email"
                     style="width:min-content;">
                 <label for="floatingInput" style="color: grey;">Email</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="postcode" class="form-control" id="floatingInput" placeholder="postcode"
+                <input type="postcode" class="form-control" id="floatingInput" placeholder="postcode" name="postcode"
                     style="width: min-content;">
                 <label for="floatingInput" style="color: grey;">Postcode</label>
             </div>
             <div class="form-floating">
                 <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
-                    style="width:200px">
+                    name="vaccine" style="width:200px">
                     <option></option>
-                    <option value="1">Pfizer/BioNtech</option>
-                    <option value="2">Oxford/Astrazeneca</option>
-                    <option value="3">Moderna</option>
+                    <option value="Pfizer/BioNtech">Pfizer/BioNtech</option>
+                    <option value="Oxford/Astrazeneca">Oxford/Astrazeneca</option>
+                    <option value="Moderna">Moderna</option>
                 </select>
                 <label for="floatingSelect" style="font-size: 18px;">Vaccine Dropdown</label>
             </div>

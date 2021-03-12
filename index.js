@@ -45,4 +45,26 @@ function renderPatient(patient) {
     return row;
 }
 
+document.getElementById("patientForm").addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const data = {
+        name: this.name.value,
+        age: this.age.value,
+        email: this.email.value,
+        postCode: this.postcode.value,
+        vaccine: this.vaccine.value,
+    };
+
+    axios.post("http://localhost:8080/createPatient", data)
+        .then(() => {
+            this.reset();
+            this.name.focus();
+            getPatient();
+        })
+        .catch(err => console.error(err));
+
+
+})
+
 getPatient();
