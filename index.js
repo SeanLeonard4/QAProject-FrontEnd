@@ -70,6 +70,7 @@ function renderPatient(patient) {
     const updateButton = document.createElement("button");
     updateButton.className = "btn btn-light";
     updateButton.innerText = "Update";
+    updateButton.id = "updateBt";
     updateButton.addEventListener('click', function () {
         openModal(patient.id);
         document.getElementById("updateName").value = patient.name;
@@ -83,7 +84,8 @@ function renderPatient(patient) {
 
     const deleteButton = document.createElement("button");
     deleteButton.className = "btn btn-light";
-    deleteButton.innerHTML = "Delete"
+    deleteButton.innerHTML = "Delete";
+    deleteButton.id = "deleteBt";
     deleteButton.addEventListener('click', function () {
         deletePatient(patient.id);
     })
