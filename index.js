@@ -34,6 +34,7 @@ function getPatient() {
 
             patient.forEach(patient => {
                 const newPatient = renderPatient(patient);
+                table.appendChild(newPatient);
             });
         }).catch(err => console.error(err))
 }
@@ -66,20 +67,28 @@ function renderPatient(patient) {
     const cellFutVacDate = row.insertCell();
     cellFutVacDate.innerHTML = patient.futureVacDate;
 
-    const UpdateButton = document.createElement("button");
-    UpdateButton.className = "btn btn-light";
-    UpdateButton.innerText = "Update";
-    UpdateButton.addEventListener('click', function () {
+    const updateButton = document.createElement("button");
+    updateButton.className = "btn btn-light";
+    updateButton.innerText = "Update";
+    updateButton.addEventListener('click', function () {
         openModal(patient.id);
+        document.getElementById("updateName").value = patient.name;
+        document.getElementById("updateAge").value = patient.age;
+        document.getElementById("updateEmail").value = patient.email;
+        document.getElementById("updatePostcode").value = patient.postCode;
+        document.getElementById("updateVaccine").value = patient.vaccine;
     })
 
-    row.appendChild(UpdateButton);
+    row.appendChild(updateButton);
 
-    const DeleteButton = document.createElement("button");
-    DeleteButton.className = "btn btn-light";
-    DeleteButton.innerHTML = "Delete"
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "btn btn-light";
+    deleteButton.innerHTML = "Delete"
+    deleteButton.addEventListener('click', function () {
+        deletePatient(patient.id);
+    })
 
-    row.appendChild(DeleteButton);
+    row.appendChild(deleteButton);
 
     return row;
 }
@@ -111,13 +120,31 @@ document.getElementById("modalForm").addEventListener('submit', function (event)
     const data = {
         name: this.updatedName.value,
         age: this.updatedAge.value,
-        job_title: this.updatedJobTitle.value
+        email: this.updatedEmail.value,
+        postCode: this.updatedPostcode.value,
+        vaccine: this.updatedVaccine.value,
     }
-    updatePerson(updateID, data);
-    this.updatedName.value = "";
-    this.updatedAge.value = null;
-    this.updatedJobTitle.value = "";
+    updatePatient(updateID, data);
+    this.reset();
     closeModal();
 })
+
+function updatePatient(id, data) {
+
+    axios.put("http://localhost:8080/updatePatient/" + id, data)
+        .then(() => {
+            getPatient();
+        })
+        .catch(err => console.error(err));
+
+}
+
+function deletePatient(id) {
+    axios.delete("http://localhost:8080/deletePatient/" + id)
+        .then(() => getPatient())
+        .catch(err => console.error(err));
+
+}
+
 
 getPatient();
