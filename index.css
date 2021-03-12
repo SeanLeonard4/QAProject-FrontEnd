@@ -5,6 +5,10 @@ body {
 
 }}
 
+.table{
+    --bs-table-striped-bg: rgb(168, 221, 168);
+}
+
 
 .mainHeader {
     background-color: rgb(0, 184, 92);
